@@ -14,7 +14,15 @@ app.engine('html', handlebars.engine);
 app.set('view engine', 'html');
 
 app.get('/', (req, res) => {
-    res.render('index', {layout: false});
+    let d = new Date();
+    res.render('index', {
+        loggedIn: true,
+        restaurant1: "Cava",
+        restaurant2: "Chipotle",
+        restaurant3: "Sweetgreen",
+        date: d.toDateString(),
+        layout: false
+    });
 });
 
 app.get('/preferences', (req, res) => {
