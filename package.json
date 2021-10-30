@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/kevinseonpj/plan-your-dine#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"
