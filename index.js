@@ -21,6 +21,18 @@ app.get('/preferences', (req, res) => {
     res.render('preferences', {layout: false});
 });
 
+app.get('/postlogin', (req, res) => {
+    res.render('postlogin', {layout: false});
+});
+
+app.get('/login', (req, res) => {
+    res.render('login', {layout: false});
+});
+
+app.get('/registration', (req, res) => {
+    res.render('registration', {layout: false});
+});
+
 app.engine('html', handlebars.engine);
 app.set('view engine', 'html');
 
