@@ -5,5 +5,5 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('public'));
 
 app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${port}`);
+  console.log(`Server listening at http://localhost:${PORT}`);
 });
