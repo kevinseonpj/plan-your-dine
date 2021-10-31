@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const database = require('./database.js');
+const sortMenu = require('./sortMenu.js');
 const db = database.db;
 
 const app = express();
@@ -58,15 +59,23 @@ handlebars = exphbs.create({
 app.engine('html', handlebars.engine);
 app.set('view engine', 'html');
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     database.scrapeMenus();
     let d = new Date();
     if (req.user) {
         const email = req.user ? req.user.email: "None";
+        let rankResult = await sortMenu.rankUser(req.user, req.session.userId);
+
         res.render('postlogin', {
             email: email,
             date: d.toDateString(),
-            layout: false
+            layout: false,
+            restaurant1: rankResult[0].name,
+            restaurant2: rankResult[1].name,
+            restaurant3: rankResult[2].name,
+            dish1: rankResult[0].item,
+            dish2: rankResult[1].item,
+            dish3: rankResult[2].item
         });
     } else {
         res.render('index', {
@@ -80,7 +89,7 @@ app.get('/preferences', (req, res) => {
     if (req.user) {
         res.render('preferences', {prefs: req.user.prefs, layout: false});
     } else {
-        res.redirect('/');
+        res.redirect('/login');
     }
 });
 
@@ -110,7 +119,7 @@ app.get('/group_link', (req, res) => {
     if (req.user) {
         res.render('group_link', {layout: false});
     } else {
-        res.redirect('/');
+        res.redirect('/login');
     }
 });
 
@@ -119,7 +128,7 @@ app.get('/my_group', (req, res) => {
         database.scrapeMenus();
         res.render('my_group', {layout: false});
     } else {
-        res.redirect('/');
+        res.redirect('/login');
     }
 });
 
@@ -127,7 +136,7 @@ app.get('/group_code', (req, res) => {
     if (req.user) {
         res.render('group_code', {layout: false});
     } else {
-        res.redirect('/');
+        res.redirect('/login');
     }
 });
 
