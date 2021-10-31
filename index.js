@@ -4,18 +4,11 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const database = require('./database.js');
+const db = database.db;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
-const serviceAccount = require("./plan-your-dine-firebase-adminsdk-9xve9-f27aa4313f.json");
-const { testElement } = require('domutils');
-initializeApp({
-    credential: cert(serviceAccount)
-});
-const db = getFirestore();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -66,25 +59,43 @@ app.engine('html', handlebars.engine);
 app.set('view engine', 'html');
 
 app.get('/', (req, res) => {
+    database.scrapeMenus();
     let d = new Date();
-    const email = req.user ? req.user.email: "None";
-    res.render('index', {
-        loggedIn: true,
-        restaurant1: "Cava",
-        restaurant2: "Chipotle",
-        restaurant3: "Sweetgreen",
-        date: d.toDateString(),
-        email: email,
-        layout: false
-    });
+    if (req.user) {
+        const email = req.user ? req.user.email: "None";
+        res.render('postlogin', {
+            email: email,
+            date: d.toDateString(),
+            layout: false
+        });
+    } else {
+        res.render('index', {
+            date: d.toDateString(),
+            layout: false
+        });
+    }
 });
 
 app.get('/preferences', (req, res) => {
-    res.render('preferences', {layout: false});
+    if (req.user) {
+        res.render('preferences', {prefs: req.user.prefs, layout: false});
+    } else {
+        res.redirect('/');
+    }
 });
 
-app.get('/postlogin', (req, res) => {
-    res.render('postlogin', {layout: false});
+app.post('/preferences', async (req, res) => {
+    delete req.body["action"];
+    const foods = Object.keys(req.body);
+    const userRef = await db.collection('Users').doc(req.session.userId);
+
+    await userRef.update({
+        prefs: foods
+    });
+    const userDoc = await userRef.get();
+    req.user = userDoc.data();
+    
+    res.redirect("/preferences");
 });
 
 app.get('/login', (req, res) => {
@@ -96,15 +107,28 @@ app.get('/registration', (req, res) => {
 });
 
 app.get('/group_link', (req, res) => {
-    res.render('group_link', {layout: false});
+    if (req.user) {
+        res.render('group_link', {layout: false});
+    } else {
+        res.redirect('/');
+    }
 });
 
 app.get('/my_group', (req, res) => {
-    res.render('my_group', {layout: false});
+    if (req.user) {
+        database.scrapeMenus();
+        res.render('my_group', {layout: false});
+    } else {
+        res.redirect('/');
+    }
 });
 
 app.get('/group_code', (req, res) => {
-    res.render('group_code', {layout: false});
+    if (req.user) {
+        res.render('group_code', {layout: false});
+    } else {
+        res.redirect('/');
+    }
 });
 
 app.post('/register', async (req, res) => {
@@ -169,4 +193,4 @@ app.set('view engine', 'html');
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
-}); 
+});
