@@ -150,7 +150,7 @@ async function rankUser(user, userId) {
         return 0;
     });
 
-    // you don't reaaaaaaaaaaaaaaaaally need to store it if you reallly think about it, but... it's cooler and memory is cheap!
+    // store the data in the database
     const userRef = await db.collection('Users').doc(userId);
     await userRef.update({
         rankingKin: rankKin,

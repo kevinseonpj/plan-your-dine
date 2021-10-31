@@ -64,19 +64,28 @@ app.get('/', async (req, res) => {
     let d = new Date();
     if (req.user) {
         const email = req.user ? req.user.email: "None";
-        let rankResult = await sortMenu.rankUser(req.user, req.session.userId);
-
-        res.render('postlogin', {
-            email: email,
-            date: d.toDateString(),
-            layout: false,
-            restaurant1: rankResult[0].name,
-            restaurant2: rankResult[1].name,
-            restaurant3: rankResult[2].name,
-            dish1: rankResult[0].item,
-            dish2: rankResult[1].item,
-            dish3: rankResult[2].item
-        });
+        if (req.user.prefs) {
+            let rankResult = await sortMenu.rankUser(req.user, req.session.userId);
+            res.render('postlogin', {
+                name: req.user.first_name,
+                date: d.toDateString(),
+                layout: false,
+                restaurant1: rankResult[0].name,
+                restaurant2: rankResult[1].name,
+                restaurant3: rankResult[2].name,
+                dish1: rankResult[0].item,
+                dish2: rankResult[1].item,
+                dish3: rankResult[2].item,
+                prefsSet: true
+            });
+        } else {
+            res.render('postlogin', {
+                name: req.user.first_name,
+                date: d.toDateString(),
+                layout: false,
+                prefsSet: false
+            });
+        }
     } else {
         res.render('index', {
             date: d.toDateString(),
@@ -123,10 +132,130 @@ app.get('/group_link', (req, res) => {
     }
 });
 
-app.get('/my_group', (req, res) => {
+function makeid(length) {
+    let result = '';
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    for (let i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+
+app.post("/group_link", async (req, res) => {    
+    let code = makeid(5);
+    const groupRes = await db.collection('Groups').add({
+        code: code,
+        users: [req.session.userId]
+    });
+
+    const userRef = await db.collection('Users').doc(req.session.userId);
+    await userRef.update({
+        groupCode: code
+    });
+    const userDoc = await userRef.get();
+    req.user = userDoc.data();
+
+    res.redirect('/group_code');
+});
+
+app.post("/join_group", async (req, res) => {
+    const groupsRef = db.collection('Groups');
+    const snapshot = await groupsRef.where('code', '==', req.body.code).get();
+
+    if (snapshot.empty) {
+        res.json({"error" : "The GroupCode is Invalid"});
+    } else {
+        const groupDoc = snapshot.docs[0];
+        // get user array
+        const group = groupDoc.data();
+        group.users.push(req.session.userId);
+        // and then push the updated array
+        const groupRef = await db.collection('Groups').doc(groupDoc.id);
+        await groupRef.update({
+            users: group.users
+        });
+
+        const userRef = await db.collection('Users').doc(req.session.userId);
+        await userRef.update({
+            groupCode: req.body.code
+        });
+        const userDoc = await userRef.get();
+        req.user = userDoc.data();
+
+        res.redirect('/my_group');
+    }
+});
+
+app.get('/my_group', async (req, res) => {
     if (req.user) {
         database.scrapeMenus();
-        res.render('my_group', {layout: false});
+
+        const usersRef = db.collection('Users');
+        const snapshot = await usersRef.where('groupCode', '==', req.user.groupCode).get();
+        
+        if (snapshot.empty) {
+            res.json({"error" : "No users found in group"});
+        } else {
+            let userCount = 0;
+            let avgKin = 0;
+            let avgJCL = 0;
+            let avgJ2 = 0;
+            // for all the users with this groupCodes
+            for (let i = 0; i < snapshot.docs.length; i++) {
+                const user = snapshot.docs[i].data();
+                if (user.prefs) {
+                    userCount++;
+                    avgKin += user.rankingKin;
+                    avgJCL += user.rankingJCL;
+                    avgJ2 += user.rankingJ2;
+                }
+            }
+            if (userCount != 0){
+                avgKin /= userCount;
+                avgJCL /= userCount;
+                avgJ2 /= userCount;
+            } else {
+                res.render('my_group', {
+                    group1: "Undetermined",
+                    group2: "Undetermined",
+                    group3: "Undetermined",
+                    layout: false
+                });
+            }
+
+            // Now sort the menu rankings
+            let diningHalls = [
+                {
+                    name: "Kins",
+                    rank: avgKin,
+                },
+                {
+                    name: "J2",
+                    rank: avgJ2,
+                },
+                {
+                    name: "JCL",
+                    rank: avgJCL,
+                }
+            ];
+            
+            diningHalls.sort(function(x, y) {
+                if (x.rank < y.rank) {
+                  return 1;
+                }
+                if (x.rank > y.rank) {
+                  return -1;
+                }
+                return 0;
+            });
+
+            res.render('my_group', {
+                group1: diningHalls[0].name,
+                group2: diningHalls[1].name,
+                group3: diningHalls[2].name,
+                layout: false
+            });
+        }
     } else {
         res.redirect('/login');
     }
@@ -134,7 +263,10 @@ app.get('/my_group', (req, res) => {
 
 app.get('/group_code', (req, res) => {
     if (req.user) {
-        res.render('group_code', {layout: false});
+        res.render('group_code', {
+            layout: false,
+            code: req.user.groupCode
+        });
     } else {
         res.redirect('/login');
     }
@@ -151,6 +283,8 @@ app.post('/register', async (req, res) => {
     } else {
         bcrypt.hash(req.body.password, 12, async (err, hash) => {
             const userRes = await db.collection('Users').add({
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
                 email: req.body.email,
                 password: hash
             });
