@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Plan Your Dine</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,12 +12,12 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/postlogin" class="brand-logo">Plan Your Dine</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Plan Your Dine</a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="/">Logout</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
         <ul class="right hide-on-med-and-down">
-          <li><a href="/postlogin">Home</a></li>
+          <li><a href="/">Home</a></li>
         </ul>
         <ul class="right hide-on-med-and-down">
           <li><a href="/my_group">My Group</a></li>
@@ -30,7 +30,7 @@
         </ul>
   
         <ul id="nav-mobile" class="sidenav">
-          <li><a href="/postlogin">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="/group_link">New Group</a></li>
           <li><a href="/my_group">My Group</a></li>
           <li><a href="/preferences">My Preferences</a></li>
@@ -51,223 +51,236 @@
 
   <div class="container">
     <div class="section">
+      <form action="/preferences" method="POST" class="col s12">
+        <!--   Icon Section   -->
+        <div class="row">
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center brown-text"><i class="material-icons">bakery_dining</i></h2>
+              <h5 class="center brown-text">Carbs</h5>
+              <label for="Rice">
+                <input id="Rice" type="checkbox" class="filled-in" name="rice"/>
+                <span>Rice</span><br>
+              </label>
+              <label for="Noodles">
+                <input id="Noodles" type="checkbox" class="filled-in" name="noodles"/>
+                <span>Noodles</span><br>
+              </label>
+              <label for="Pasta">
+                <input id="Pasta" type="checkbox" class="filled-in" name="pasta"/>
+                <span>Pasta</span><br>
+              </label>
+              <label for="Bread">
+                <input id="Bread" type="checkbox" class="filled-in" name="bread"/>
+                <span>Bread</span><br>
+              </label>
+              <label for="Wraps & Rolls">
+                <input id="Wraps & Rolls" type="checkbox" class="filled-in" name="wraps"/>
+                <span>Wraps & Rolls</span><br>
+              </label>
+              <label for="Chips">
+                <input id="Chips" type="checkbox" class="filled-in" name="chips"/>
+                <span>Chips</span><br>
+              </label>
+              <label for="Pastries">
+                <input id="Pastries" type="checkbox" class="filled-in" name="pastries"/>
+                <span>Pastries</span><br>
+              </label>
+              <label for="Oats & Cereal">
+                <input id="Oats & Cereal" type="checkbox" class="filled-in" name="oats"/>
+                <span>Oats & Cereal</span><br>
+              </label>
+            </div>
+          </div>
 
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">bakery_dining</i></h2>
-            <h5 class="center brown-text">Carbs</h5>
-            <label for="Rice">
-              <input id="Rice" type="checkbox" class="filled-in"/>
-              <span>Rice</span><br>
-            </label>
-            <label for="Noodles">
-              <input id="Noodles" type="checkbox" class="filled-in"/>
-              <span>Noodles</span><br>
-            </label>
-            <label for="Pasta">
-              <input id="Pasta" type="checkbox" class="filled-in"/>
-              <span>Pasta</span><br>
-            </label>
-            <label for="Bread">
-              <input id="Bread" type="checkbox" class="filled-in"/>
-              <span>Bread</span><br>
-            </label>
-            <label for="Wraps & Rolls">
-              <input id="Wraps & Rolls" type="checkbox" class="filled-in"/>
-              <span>Wraps & Rolls</span><br>
-            </label>
-            <label for="Chips">
-              <input id="Chips" type="checkbox" class="filled-in"/>
-              <span>Chips</span><br>
-            </label>
-            <label for="Pastries">
-              <input id="Pastries" type="checkbox" class="filled-in"/>
-              <span>Pastries</span><br>
-            </label>
-            <label for="Oats & Cereal">
-              <input id="Oats & Cereal" type="checkbox" class="filled-in"/>
-              <span>Oats & Cereal</span><br>
-            </label>
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center red-text"><i class="material-icons">set_meal</i></h2>
+              <h5 class="center red-text">Protein</h5>
+              <label for="Pork">
+                <input id="Pork" type="checkbox" class="filled-in" name="pork"/>
+                <span>Pork</span><br>
+              </label>
+              <label for="Beef">
+                <input id="Beef" type="checkbox" class="filled-in" name="beef"/>
+                <span>Beef</span><br>
+              </label>
+              <label for="Lamb">
+                <input id="Lamb" type="checkbox" class="filled-in" name="lamb"/>
+                <span>Lamb</span><br>
+              </label>
+              <label for="Fish">
+                <input id="Fish" type="checkbox" class="filled-in" name="fish"/>
+                <span>Fish</span><br>
+              </label>
+              <label for="Chicken">
+                <input id="Chicken" type="checkbox" class="filled-in" name="chicken"/>
+                <span>Chicken</span><br>
+              </label>
+              <label for="Shellfish">
+                <input id="Shellfish" type="checkbox" class="filled-in" name="shellfish"/>
+                <span>Shellfish</span><br>
+              </label>
+              <label for="Eggs">
+                <input id="Eggs" type="checkbox" class="filled-in" name="egg"/>
+                <span>Eggs</span><br>
+              </label>
+              <label for="Tofu">
+                <input id="Tofu" type="checkbox" class="filled-in" name="tofu"/>
+                <span>Tofu</span><br>
+              </label>
+              <label for="Vegan Menu">
+                <input id="Vegan Menu" type="checkbox" class="filled-in" name="vegan"/>
+                <span>Vegan Menu</span><br>
+              </label>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center light-green-text"><i class="material-icons">grass</i></h2>
+              <h5 class="center light-green-text">Veggies</h5>    
+              <label for="Leafy Greens">
+                <input id="Leafy Greens" type="checkbox" class="filled-in" name="green"/>
+                <span>Leafy Greens</span><br>
+              </label>
+              <label for="Tomatoes">
+                <input id="Tomatoes" type="checkbox" class="filled-in" name="tomato"/>
+                <span>Tomatoes</span><br>
+              </label>
+              <label for="Potatoes">
+                <input id="Potatoes" type="checkbox" class="filled-in" name="potato"/>
+                <span>Potatoes</span><br>
+              </label>
+              <label for="Beans">
+                <input id="Beans" type="checkbox" class="filled-in" name="bean"/>
+                <span>Beans</span><br>
+              </label>
+              <label for="Broccoli">
+                <input id="Broccoli" type="checkbox" class="filled-in" name="broccoli"/>
+                <span>Broccoli</span><br>
+              </label>
+              <label for="Cauliflower">
+                <input id="Cauliflower" type="checkbox" class="filled-in" name="cauliflower"/>
+                <span>Cauliflower</span><br>
+              </label>
+              <label for="Pickled Veggies">
+                <input id="Pickled Veggies" type="checkbox" class="filled-in" name="pickle"/>
+                <span>Pickled Veggies</span><br>
+              </label>
+              <label for="Grilled Veggies">
+                <input id="Grilled Veggies" type="checkbox" class="filled-in" name="grill"/>
+                <span>Grilled Veggies</span><br>
+              </label>
+              <label for="Stir Fry">
+                <input id="Stir Fry" type="checkbox" class="filled-in" name="stir"/>
+                <span>Stir Fry</span><br>
+              </label>
+              <label for="Peanuts">
+                <input id="Peanuts" type="checkbox" class="filled-in" name="peanut"/>
+                <span>Peanuts</span><br>
+              </label>
+              <label for="Tree Nut">
+                <input id="Tree Nut" type="checkbox" class="filled-in" name="treenut"/>
+                <span>Tree Nut</span><br>
+              </label>
+              <label for="Soy">
+                <input id="Soy" type="checkbox" class="filled-in" name="soy"/>
+                <span>Soy</span><br>
+              </label>
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center orange-text"><i class="material-icons">spa</i></h2>
+              <h5 class="center orange-text">Fruits</h5>    
+              <label for="Apples & Bananas">
+                <input id="Apples & Bananas" type="checkbox" class="filled-in" name="apples"/>
+                <span>Apples & Bananas</span><br>
+              </label>
+              <label for="Melons">
+                <input id="Melons" type="checkbox" class="filled-in" name="melons"/>
+                <span>Melons</span><br>
+              </label>
+              <label for="Berries">
+                <input id="Berries" type="checkbox" class="filled-in" name="berries"/>
+                <span>Berries</span><br>
+              </label>
+              <label for="Citrus Fruits">
+                <input id="Citrus Fruits" type="checkbox" class="filled-in" name="citrus"/>
+                <span>Citrus Fruits</span><br>
+              </label>
+              <label for="Fruit Salad">
+                <input id="Fruit Salad" type="checkbox" class="filled-in" name="fruit"/>
+                <span>Fruit Salad</span><br>
+              </label>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center purple-text"><i class="material-icons">icecream</i></h2>
+              <h5 class="center purple-text">Desserts & Sweets</h5>    
+              <label for="Pie">
+                <input id="Pie" type="checkbox" class="filled-in"/>
+                <span>Pie</span><br>
+              </label>
+              <label for="Cakes & Cupcakes">
+                <input id="Cakes & Cupcakes" type="checkbox" class="filled-in" name="cakes"/>
+                <span>Cakes & Cupcakes</span><br>
+              </label>
+              <label for="Yogurt">
+                <input id="Yogurt" type="checkbox" class="filled-in" name="yogurt"/>
+                <span>Yogurt</span><br>
+              </label>
+              <label for="Cookies">
+                <input id="Cookies" type="checkbox" class="filled-in" name="cookies"/>
+                <span>Cookies</span><br>
+              </label>
+              <label for="Ice Cream">
+                <input id="Ice Cream" type="checkbox" class="filled-in" name="icecream"/>
+                <span>Ice Cream</span><br>
+              </label>
+            </div>
+          </div>
+          
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center grey-text"><i class="material-icons">local_cafe</i></h2>
+              <h5 class="center grey-text">Drinks</h5>    
+              <label for="Soft Drinks">
+                <input id="Soft Drinks" type="checkbox" class="filled-in" name="soda"/>
+                <span>Soft Drinks</span><br>
+              </label>
+              <label for="Coffee">
+                <input id="Coffee" type="checkbox" class="filled-in" name= "coffee"/>
+                <span>Coffee</span><br>
+              </label>
+              <label for="Milk">
+                <input id="Milk" type="checkbox" class="filled-in" name="milk"/>
+                <span>Milk</span><br>
+              </label>
+              <label for="Tea">
+                <input id="Tea" type="checkbox" class="filled-in" name="tea"/>
+                <span>Tea</span><br>
+              </label>
+              <label for="Hot Drinks">
+                <input id="Hot Drinks" type="checkbox" class="filled-in" name="hot" />
+                <span>Hot Drinks</span><br>
+              </label>
+              <label for="Alcohol">
+                <input id="Alcohol" type="checkbox" class="filled-in" name="alcohol"/>
+                <span>Alcohol</span><br>
+              </label>
+            </div>
           </div>
         </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center red-text"><i class="material-icons">set_meal</i></h2>
-            <h5 class="center red-text">Protein</h5>
-            <label for="Pork">
-              <input id="Pork" type="checkbox" class="filled-in"/>
-              <span>Pork</span><br>
-            </label>
-            <label for="Beef">
-              <input id="Beef" type="checkbox" class="filled-in"/>
-              <span>Beef</span><br>
-            </label>
-            <label for="Lamb">
-              <input id="Lamb" type="checkbox" class="filled-in"/>
-              <span>Lamb</span><br>
-            </label>
-            <label for="Fish">
-              <input id="Fish" type="checkbox" class="filled-in"/>
-              <span>Fish</span><br>
-            </label>
-            <label for="Chicken">
-              <input id="Chicken" type="checkbox" class="filled-in"/>
-              <span>Chicken</span><br>
-            </label>
-            <label for="Shellfish">
-              <input id="Shellfish" type="checkbox" class="filled-in"/>
-              <span>Shellfish</span><br>
-            </label>
-            <label for="Eggs">
-              <input id="Eggs" type="checkbox" class="filled-in"/>
-              <span>Eggs</span><br>
-            </label>
-            <label for="Tofu">
-              <input id="Tofu" type="checkbox" class="filled-in"/>
-              <span>Tofu</span><br>
-            </label>
-            <label for="Vegan Meat">
-              <input id="Vegan Meat" type="checkbox" class="filled-in"/>
-              <span>Vegan Meat</span><br>
-            </label>
-          </div>
+        <div class="row center">
+          <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Submit</button>
         </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-green-text"><i class="material-icons">grass</i></h2>
-            <h5 class="center light-green-text">Veggies</h5>    
-            <label for="Leafy Greens">
-              <input id="Leafy Greens" type="checkbox" class="filled-in"/>
-              <span>Leafy Greens</span><br>
-            </label>
-            <label for="Tomatoes">
-              <input id="Tomatoes" type="checkbox" class="filled-in"/>
-              <span>Tomatoes</span><br>
-            </label>
-            <label for="Potatoes">
-              <input id="Potatoes" type="checkbox" class="filled-in"/>
-              <span>Potatoes</span><br>
-            </label>
-            <label for="Beans">
-              <input id="Beans" type="checkbox" class="filled-in"/>
-              <span>Beans</span><br>
-            </label>
-            <label for="Broccoli">
-              <input id="Broccoli" type="checkbox" class="filled-in"/>
-              <span>Broccoli</span><br>
-            </label>
-            <label for="Cauliflower">
-              <input id="Cauliflower" type="checkbox" class="filled-in"/>
-              <span>Cauliflower</span><br>
-            </label>
-            <label for="Pickled Veggies">
-              <input id="Pickled Veggies" type="checkbox" class="filled-in"/>
-              <span>Pickled Veggies</span><br>
-            </label>
-            <label for="Grilled Veggies">
-              <input id="Grilled Veggies" type="checkbox" class="filled-in"/>
-              <span>Grilled Veggies</span><br>
-            </label>
-            <label for="Stir Fry">
-              <input id="Stir Fry" type="checkbox" class="filled-in"/>
-              <span>Stir Fry</span><br>
-            </label>
-          </div>
-        </div>
-
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center orange-text"><i class="material-icons">spa</i></h2>
-            <h5 class="center orange-text">Fruits</h5>    
-            <label for="Apples & Bananas">
-              <input id="Apples & Bananas" type="checkbox" class="filled-in"/>
-              <span>Apples & Bananas</span><br>
-            </label>
-            <label for="Melons">
-              <input id="Melons" type="checkbox" class="filled-in"/>
-              <span>Melons</span><br>
-            </label>
-            <label for="Berries">
-              <input id="Berries" type="checkbox" class="filled-in"/>
-              <span>Berries</span><br>
-            </label>
-            <label for="Citrus Fruits">
-              <input id="Citrus Fruits" type="checkbox" class="filled-in"/>
-              <span>Citrus Fruits</span><br>
-            </label>
-            <label for="Fruit Salad">
-              <input id="Fruit Salad" type="checkbox" class="filled-in"/>
-              <span>Fruit Salad</span><br>
-            </label>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center purple-text"><i class="material-icons">icecream</i></h2>
-            <h5 class="center purple-text">Desserts & Sweets</h5>    
-            <label for="Pie">
-              <input id="Pie" type="checkbox" class="filled-in"/>
-              <span>Pie</span><br>
-            </label>
-            <label for="Cakes & Cupcakes">
-              <input id="Cakes & Cupcakes" type="checkbox" class="filled-in"/>
-              <span>Cakes & Cupcakes</span><br>
-            </label>
-            <label for="Yogurt">
-              <input id="Yogurt" type="checkbox" class="filled-in"/>
-              <span>Yogurt</span><br>
-            </label>
-            <label for="Cookies">
-              <input id="Cookies" type="checkbox" class="filled-in"/>
-              <span>Cookies</span><br>
-            </label>
-            <label for="Ice Cream">
-              <input id="Ice Cream" type="checkbox" class="filled-in"/>
-              <span>Ice Cream</span><br>
-            </label>
-          </div>
-        </div>
-        
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center grey-text"><i class="material-icons">local_cafe</i></h2>
-            <h5 class="center grey-text">Drinks</h5>    
-            <label for="Soft Drinks">
-              <input id="Soft Drinks" type="checkbox" class="filled-in"/>
-              <span>Soft Drinks</span><br>
-            </label>
-            <label for="Coffee">
-              <input id="Coffee" type="checkbox" class="filled-in"/>
-              <span>Coffee</span><br>
-            </label>
-            <label for="Milk">
-              <input id="Milk" type="checkbox" class="filled-in"/>
-              <span>Milk</span><br>
-            </label>
-            <label for="Tea">
-              <input id="Tea" type="checkbox" class="filled-in"/>
-              <span>Tea</span><br>
-            </label>
-            <label for="Hot Drinks">
-              <input id="Hot Drinks" type="checkbox" class="filled-in"/>
-              <span>Hot Drinks</span><br>
-            </label>
-            <label for="Alcohol">
-              <input id="Alcohol" type="checkbox" class="filled-in"/>
-              <span>Alcohol</span><br>
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="row center">
-        <a href="/postlogin" id="submit" class="btn-large waves-effect waves-light orange">Submit</a>
-      </div>
+      </form>
     </div>
     <br><br>
   </div>
@@ -277,7 +290,7 @@
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          <p class="grey-text text-lighten-4">We are a team of college students that are suffering from sleep deprivation. Any amount of sleep would help support and continue development on this project and is greatly appreciated.</p>
         </div>
       </div>
     </div>
@@ -293,6 +306,12 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script>
+    const prefs = "{{prefs}}".split(",");
+    for (let i = 0; i < prefs.length; i++) {
+      $("input[name=" + prefs[i] + "]").prop('checked', true);
+    }
+  </script>
 
   </body>
 </html>

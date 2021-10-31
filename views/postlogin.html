@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Plan Your Dine</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,12 +12,12 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/postlogin" class="brand-logo">Plan Your Dine</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Plan Your Dine</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/">Logout</a></li>
+        <li><a href="/logout">Logout</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/postlogin">Home</a></li>
+        <li><a href="/">Home</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
         <li><a href="/my_group">My Group</a></li>
@@ -30,11 +30,11 @@
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="/postlogin">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/group_link">New Group</a></li>
         <li><a href="/my_group">My Group</a></li>
         <li><a href="/preferences">My Preferences</a></li>
-        <li><a href="/">Logout</a></li>
+        <li><a href="/logout">Logout</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -42,9 +42,11 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Today's Date</h1>
+      <h1 class="header center orange-text">{{date}}</h1>
       <div class="row center">
-        <h5 class="header col s12 light">Thank you for choosing Plan Your Dine! <br><br>Here are our recommendations for the day:</h5>
+        <h5 class="header col s12 light">Hi {{name}}, thank you for choosing Plan Your Dine! 
+          <br><br>{{#if prefsSet}}Here are our recommendations for the day:{{else}}Set Your Preferences Below!{{/if}}
+        </h5>
       </div>
 
     </div>
@@ -55,39 +57,40 @@
     <div class="section">
 
       <!--   Icon Section   -->
+      {{#if prefsSet}}
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">fastfood</i></h2>
-            <h5 class="center">Restaurant 1</h5>
-
-            <p class="light">Info:</p>
+            <h5 class="center">#1: {{restaurant1}}</h5>
+            <p class="light center">Featured Dish:<br>{{dish1}}</p>
+            
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">local_bar</i></h2>
-            <h5 class="center">Restaurant 2</h5>
-
-            <p class="light">Info: </p>
+            <h5 class="center">#2: {{restaurant2}}</h5>
+            <p class="light center">Featured Dish:<br>{{dish2}}</p>
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">restaurant</i></h2>
-            <h5 class="center">Restuarant 3</h5>
-
-            <p class="light">Info: </p>
+            <h5 class="center">#3: {{restaurant3}}</h5>
+      
+            <p class="light center">Featured Dish:<br>{{dish3}}</p>
           </div>
         </div>
       </div>
+      {{/if}}
       <br><br>
       <div class="row center">
         <a href="preferences" id="download-button" class="btn-large waves-effect waves-light orange">Change My Preferences</a><br><br>
         <a href="/my_group" id="download-button" class="btn-large waves-effect waves-light pink">In a Group? Click Here!</a><br><br>
-        <a href="/" id="download-button" class="btn-large waves-effect waves-light light-blue">Logout</a>
+        <a href="/logout" id="download-button" class="btn-large waves-effect waves-light light-blue">Logout</a>
       </div>
     </div>
     <br><br>
@@ -98,7 +101,7 @@
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">Memer Squad Co.</h5>
-          <p class="grey-text text-lighten-4">We play LOL like it's our full time job. Any amount of donations would greatly appreciated (Kevin really wants that new Yasuo skin).</p>
+          <p class="grey-text text-lighten-4">>We are a team of college students that are suffering from sleep deprivation. Any amount of sleep would greatly appreciated.</p>
         </div>
       </div>
     </div>

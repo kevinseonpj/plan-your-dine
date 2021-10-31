@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Plan Your Dine</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,12 +12,12 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/postlogin" class="brand-logo">Plan Your Dine</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Plan Your Dine</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/">Logout</a></li>
+        <li><a href="/logout">Logout</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/postlogin">Home</a></li>
+        <li><a href="/">Home</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
         <li><a href="/my_group">My Group</a></li>
@@ -30,11 +30,11 @@
       </ul>
       
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="/postlogin">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/group_link">New Group</a></li>
         <li><a href="/my_group">My Group</a></li>
         <li><a href="/preferences">My Preferences</a></li>
-        <li><a href="/">Logout</a></li>
+        <li><a href="/logout">Logout</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -58,27 +58,21 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">fastfood</i></h2>
-            <h5 class="center">Group Restaurant 1</h5>
-
-            <p class="light">Info: good for everyone in group</p>
+            <h5 class="center">#1: {{group1}}</h5>
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">local_bar</i></h2>
-            <h5 class="center">Group Restaurant 2</h5>
-
-            <p class="light">Info: good for everyone in group</p>
+            <h5 class="center">#2: {{group2}}</h5>
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">restaurant</i></h2>
-            <h5 class="center">Group Restuarant 3</h5>
-
-            <p class="light">Info: good for everyone in group</p>
+            <h5 class="center">#3: {{group3}}</h5>
           </div>
         </div>
       </div>
