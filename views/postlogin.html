@@ -12,13 +12,29 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Plan Your Dine</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/postlogin" class="brand-logo">Plan Your Dine</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/login">Login</a></li>
+        <li><a href="/">Logout</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/postlogin">Home</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/my_group">My Group</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/group_link">New Group</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/preferences">My Preferences</a></li>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="/login">Login</a></li>
+        <li><a href="/postlogin">Home</a></li>
+        <li><a href="/group_link">New Group</a></li>
+        <li><a href="/my_group">My Group</a></li>
+        <li><a href="/preferences">My Preferences</a></li>
+        <li><a href="/">Logout</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -26,9 +42,9 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Welcome to Plan Your Dine!</h1>
+      <h1 class="header center orange-text">Today's Date</h1>
       <div class="row center">
-        <h5 class="header col s12 light">Today's Date<br><br>Here are some popular nearby eating locations:</h5>
+        <h5 class="header col s12 light">Thank you for choosing Plan Your Dine! <br><br>Here are our recommendations for the day:</h5>
       </div>
 
     </div>
@@ -39,12 +55,11 @@
     <div class="section">
 
       <!--   Icon Section   -->
-      {{#if loggedIn}}
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">fastfood</i></h2>
-            <h5 class="center">{{restaurant1}}</h5>
+            <h5 class="center">Restaurant 1</h5>
 
             <p class="light">Info:</p>
           </div>
@@ -53,7 +68,7 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">local_bar</i></h2>
-            <h5 class="center">{{restaurant2}}</h5>
+            <h5 class="center">Restaurant 2</h5>
 
             <p class="light">Info: </p>
           </div>
@@ -62,16 +77,17 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">restaurant</i></h2>
-            <h5 class="center">{{restaurant3}}</h5>
+            <h5 class="center">Restuarant 3</h5>
 
             <p class="light">Info: </p>
           </div>
         </div>
       </div>
-      {{/if}}
       <br><br>
       <div class="row center">
-        <a href="/login" id="download-button" class="btn-large waves-effect waves-light orange">Login</a>
+        <a href="preferences" id="download-button" class="btn-large waves-effect waves-light orange">Change My Preferences</a><br><br>
+        <a href="/my_group" id="download-button" class="btn-large waves-effect waves-light pink">In a Group? Click Here!</a><br><br>
+        <a href="/" id="download-button" class="btn-large waves-effect waves-light light-blue">Logout</a>
       </div>
     </div>
     <br><br>
