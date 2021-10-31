@@ -67,7 +67,7 @@ async function getDiningHallFoods(url) {
                 newFood.halal = true;
             }
         }
-        foodArr.push(newFood);
+        foodArr.push(JSON.stringify(newFood));
     }
     return foodArr;
 }
@@ -129,12 +129,12 @@ async function getDiningHallFoodsJ(url) {
             }
         }
         if (type == "j2") {
-            j2Food.push(newFood);
+            j2Food.push(JSON.stringify(newFood));
         } else if (type == "jcl") {
-            jclFood.push(newFood);
+            jclFood.push(JSON.stringify(newFood));
         } else {
-            j2Food.push(newFood);
-            jclFood.push(newFood);
+            j2Food.push(JSON.stringify(newFood));
+            jclFood.push(JSON.stringify(newFood));
         }
     }
 
@@ -142,4 +142,9 @@ async function getDiningHallFoodsJ(url) {
         jclFood: jclFood,
         j2Food: j2Food
     }
+}
+
+module.exports = {
+    getDiningHallFoods,
+    getDiningHallFoodsJ
 }
