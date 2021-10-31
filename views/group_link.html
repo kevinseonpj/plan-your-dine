@@ -12,13 +12,29 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Plan Your Dine</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/postlogin" class="brand-logo">Plan Your Dine</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/login">Login</a></li>
+        <li><a href="/">Logout</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/postlogin">Home</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/my_group">My Group</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/group_link">New Group</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/preferences">My Preferences</a></li>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="/login">Login</a></li>
+        <li><a href="/postlogin">Home</a></li>
+        <li><a href="/group_link">New Group</a></li>
+        <li><a href="/my_group">My Group</a></li>
+        <li><a href="/preferences">My Preferences</a></li>
+        <li><a href="/">Logout</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -26,7 +42,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Login</h1>
+      <h1 class="header center orange-text">Enter Group Code</h1>
     </div>
   </div>
 
@@ -39,25 +55,35 @@
         <form class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input id="email" type="text" class="validate">
-              <label for="email">Email</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="password" type="text" class="validate">
-              <label for="password">Password</label>
+              <input id="group_id" type="text" class="validate">
+              <label for="group_id">Group Code</label>
             </div>
           </div>
         </form>
       </div>
       <br><br>
       <div class="row center">
-        <a href="/postlogin" id="download-button" class="btn-large waves-effect waves-light orange">Login</a><br><br>
-        <a href="/registration" id="download-button" class="btn-large waves-effect waves-light blue">New User? Register Here</a>
+        <a href="/my_group" id="download-button" class="btn-large waves-effect waves-light orange">Submit</a><br><br>
       </div>
     </div>
-    <br><br>
+  </div>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Create New Group</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <br><br>
+      <div class="row center">
+        <a href="/group_code" id="download-button" class="btn-large waves-effect waves-light orange">Generate Group Code</a><br><br>
+      </div>
+    </div>
   </div>
 
   <footer class="page-footer orange">
