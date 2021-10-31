@@ -1,12 +1,12 @@
 const grabMenu = require('./grabMenu.js');
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
-const serviceAccount = require("./plan-your-dine-firebase-adminsdk-9xve9-f27aa4313f.json");
-const { testElement } = require('domutils');
-initializeApp({
-    credential: cert(serviceAccount)
-});
-const db = getFirestore();
+// const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+// const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+// const serviceAccount = require("./plan-your-dine-firebase-adminsdk-9xve9-f27aa4313f.json");
+// const { testElement } = require('domutils');
+// initializeApp({
+//     credential: cert(serviceAccount)
+// });
+// const db = getFirestore();
 
 async function scrapeMenus() {
     const timeRef = await db.collection('Restaurants').doc('LastUpdated');
